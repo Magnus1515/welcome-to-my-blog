@@ -1,0 +1,11 @@
+<article class="post">
+  <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <div class="post-box">
+    {{ partial "post-meta.html" . }}
+    <div class="post-body">{{ .Summary }}</div>
+    <div class="post-footer">
+      {{ if .Truncated }}<a href="{{ .RelPermalink }}">Leer más »</a>{{ end }}
+      {{ partial "post-tags.html" . }}
+    </div>
+  </div>
+</article>

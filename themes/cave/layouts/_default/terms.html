@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="post">
+  <h1 class="post-title">Etiquetas</h1>
+  <div class="post-box">
+    <div class="tags">
+      {{ range .Data.Terms.Alphabetical }}
+        <a class="tag" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="muted">({{ .Count }})</span></a>
+      {{ end }}
+    </div>
+  </div>
+</article>
+{{ end }}

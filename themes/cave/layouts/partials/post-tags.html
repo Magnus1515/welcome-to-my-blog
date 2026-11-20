@@ -1,0 +1,1 @@
+{{ with .GetTerms "tags" }}<span>Etiquetas: {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}</span>{{ end }}

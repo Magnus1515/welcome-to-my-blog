@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{ $pages := where site.RegularPages "Section" "posts" }}
+{{ $pager := .Paginate $pages }}
+{{ range $pager.Pages }}
+  {{ partial "post-summary.html" . }}
+{{ else }}
+  <p>Todavía no hay entradas en la cueva.</p>
+{{ end }}
+{{ partial "pager.html" $pager }}
+{{ end }}

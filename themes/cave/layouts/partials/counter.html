@@ -1,0 +1,22 @@
+{{ with site.Params.goatcounter }}
+{{ if hugo.IsProduction }}
+{{/* Registra la visita */}}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{ end }}
+{{/* Lee el total del sitio y lo pinta en el contador retro */}}
+<script>
+(function () {
+  var box = document.getElementById('visit-counter');
+  if (!box) return;
+  fetch('https://{{ . }}.goatcounter.com/counter/TOTAL.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      var n = String(d.count).replace(/\D/g, '').padStart(6, '0');
+      box.innerHTML = n.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
+      box.setAttribute('aria-label', 'Contador de visitas: ' + Number(n));
+    })
+    .catch(function () {});
+})();
+</script>
+{{ end }}

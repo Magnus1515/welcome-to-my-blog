@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default "es" }}">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<div class="page">
+  {{ partial "header.html" . }}
+  <div class="layout">
+    <main class="content" id="contenido">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "sidebar.html" . }}
+  </div>
+  {{ partial "footer.html" . }}
+</div>
+{{ $js := resources.Get "js/theme.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ partial "counter.html" . }}
+</body>
+</html>

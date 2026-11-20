@@ -1,0 +1,8 @@
+{{ define "main" }}
+<h1 class="post-title">{{ if eq .Kind "term" }}Etiqueta: {{ end }}{{ .Title }}</h1>
+{{ $pager := .Paginate .Pages }}
+{{ range $pager.Pages }}
+  {{ partial "post-summary.html" . }}
+{{ end }}
+{{ partial "pager.html" $pager }}
+{{ end }}

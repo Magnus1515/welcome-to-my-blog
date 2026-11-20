@@ -1,0 +1,42 @@
+baseURL = "https://example.com/"   # cámbialo por tu dominio
+title = "Welcome to my cave"
+theme = "cave"
+languageCode = "es-mx"
+defaultContentLanguage = "es"
+enableRobotsTXT = true
+capitalizeListTitles = false
+
+[pagination]
+  pagerSize = 5
+
+[taxonomies]
+  tag = "tags"
+
+[params]
+  subtitle = "Bienvenido a mi blogcito mañanero"
+  author = "Magnus"
+  avatar = "img/avatar-256.png"
+  # Contador de visitas con GoatCounter (gratis): crea tu cuenta en goatcounter.com
+  # y pon aquí tu código, p. ej. "welcometomycave" para welcometomycave.goatcounter.com.
+  # Déjalo vacío para mostrar el contador en ceros mientras tanto.
+  goatcounter = ""
+
+[[menus.main]]
+  name = "Inicio"
+  pageRef = "/"
+  weight = 10
+[[menus.main]]
+  name = "Sobre mí"
+  pageRef = "/sobre-mi"
+  weight = 20
+[[menus.main]]
+  name = "Archivo"
+  pageRef = "/archivo"
+  weight = 30
+[[menus.main]]
+  name = "Etiquetas"
+  pageRef = "/tags"
+  weight = 40
+
+[markup.goldmark.renderer]
+  unsafe = false

@@ -1,0 +1,44 @@
+<aside class="sidebar">
+  <nav class="box" aria-label="Menú principal">
+    <h2>Menú principal</h2>
+    <ul>
+      {{ $current := . }}
+      {{ range site.Menus.main }}
+        <li><a href="{{ .URL }}"{{ if $current.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+
+  {{ with site.Taxonomies.tags }}
+  <section class="box">
+    <h2>Etiquetas</h2>
+    <div class="tags">
+      {{ range first 15 .ByCount }}
+        {{ $active := and (eq $.Kind "term") (eq $.Title .Page.Title) }}
+        <a class="tag{{ if $active }} is-active{{ end }}" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ with $posts }}
+  <section class="box">
+    <h2>Archivo</h2>
+    <ul>
+      {{ range first 6 (.GroupByDate "2006-01") }}
+        {{ $first := index .Pages 0 }}
+        <li><a href="{{ "archivo/" | relURL }}#{{ .Key }}">{{ $first.Date | time.Format "January 2006" | lower }}</a> <span class="muted">({{ len .Pages }})</span></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <section class="box counter-box">
+    <h2>Visitantes</h2>
+    <div class="counter" id="visit-counter" aria-label="Contador de visitas">
+      {{ range seq 6 }}<span>0</span>{{ end }}
+    </div>
+    <p class="muted small">personas han entrado a la cueva</p>
+  </section>
+</aside>
